@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "JavalinRest"
-include("Application-app", "Application-models", "Application-rest", "Application-core")
+include("Application-app", "Application-models", "Application-rest", "Application-core", "Application-data")
