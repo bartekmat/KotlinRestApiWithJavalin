@@ -7,6 +7,7 @@ plugins {
 }
 
 kotlinProject()
+dataLibs()
 dependencies {
     implementation(project(":Application-data"))
     implementation(project(":Application-models"))

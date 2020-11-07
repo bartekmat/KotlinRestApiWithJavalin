@@ -19,4 +19,6 @@ dependencies {
 
     implementation(project(":Application-rest"))
     implementation(project(":Application-data"))
+    implementation(project(":Application-core"))
+    implementation(project(":Application-models"))
 }
