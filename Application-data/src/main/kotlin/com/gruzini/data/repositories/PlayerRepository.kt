@@ -1,6 +1,6 @@
 package com.gruzini.data.repositories
 
-import com.gruzini.data.Player
+import com.gruzini.models.Player
 import com.gruzini.data.Players
 import com.gruzini.data.toPlayer
 import org.jetbrains.exposed.sql.Database

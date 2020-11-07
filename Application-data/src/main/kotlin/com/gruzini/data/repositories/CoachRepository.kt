@@ -1,6 +1,6 @@
 package com.gruzini.data.repositories
 
-import com.gruzini.data.Coach
+import com.gruzini.models.Coach
 import com.gruzini.data.Coaches
 import com.gruzini.data.toCoach
 import org.jetbrains.exposed.sql.Database

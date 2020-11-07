@@ -1,4 +1,4 @@
-package com.gruzini.data
+package com.gruzini.models
 
 enum class State {
     ALABAMA,

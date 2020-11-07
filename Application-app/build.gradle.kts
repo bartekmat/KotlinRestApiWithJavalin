@@ -8,6 +8,7 @@ plugins {
 }
 
 kotlinProject()
+dataLibs()
 
 application {
     // Define the main class for the application.
@@ -15,5 +16,7 @@ application {
 }
 
 dependencies {
+
     implementation(project(":Application-rest"))
+    implementation(project(":Application-data"))
 }

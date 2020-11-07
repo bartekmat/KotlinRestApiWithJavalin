@@ -1,5 +1,9 @@
 package com.gruzini.data
 
+import com.gruzini.models.Arena
+import com.gruzini.models.Coach
+import com.gruzini.models.Player
+import com.gruzini.models.Team
 import org.jetbrains.exposed.sql.ResultRow
 
 fun ResultRow.toArena() : Arena = Arena(

@@ -1,6 +1,6 @@
 package com.gruzini.data.repositories
 
-import com.gruzini.data.Arena
+import com.gruzini.models.Arena
 import com.gruzini.data.Arenas
 import com.gruzini.data.toArena
 import org.jetbrains.exposed.sql.Database

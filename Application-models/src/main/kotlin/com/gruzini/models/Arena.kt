@@ -1,4 +1,4 @@
-package com.gruzini.data
+package com.gruzini.models
 
 data class Arena (
         private val id: Long,

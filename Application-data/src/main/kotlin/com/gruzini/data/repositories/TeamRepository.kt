@@ -1,6 +1,6 @@
 package com.gruzini.data.repositories
 
-import com.gruzini.data.Team
+import com.gruzini.models.Team
 import com.gruzini.data.Teams
 import com.gruzini.data.toTeam
 import org.jetbrains.exposed.sql.Database

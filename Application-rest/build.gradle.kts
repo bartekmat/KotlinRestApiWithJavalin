@@ -14,4 +14,5 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.10.3")
     implementation("org.slf4j:slf4j-simple:1.7.30")
 
+    implementation(project(":Application-core"))
 }
