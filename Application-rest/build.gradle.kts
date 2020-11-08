@@ -10,9 +10,12 @@ kotlinProject()
 
 
 dependencies {
-    implementation( "io.javalin:javalin:3.11.0")
+    implementation( "io.javalin:javalin:3.7.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.10.3")
     implementation("org.slf4j:slf4j-simple:1.7.30")
+    implementation( "com.google.code.gson:gson:2.8.5")
+
 
     implementation(project(":Application-core"))
+    implementation(project(":Application-models"))
 }

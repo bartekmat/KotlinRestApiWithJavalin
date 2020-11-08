@@ -12,17 +12,25 @@ import com.gruzini.rest.Rest
 import com.gruzini.services.ArenaService
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.StdOutSqlLogger
+import org.jetbrains.exposed.sql.addLogger
+import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.sql.Connection
 
-fun main () {
+fun main() {
     val tables = arrayOf(Arenas, Teams, Players, Coaches)
-    val database = Database.connect("jdbc:postgresql://localhost:5432/javalinrest", driver = "org.postgresql.Driver", user = "postgres", password = "secret").also {
-        transaction(it) {
-            println("-----------------DROP CREATE------------------")
-            SchemaUtils.drop(*tables)
-            SchemaUtils.create(*tables)
-        }
-    }
+    val database = Database.connect("jdbc:postgresql://localhost:5432/javalinrest", driver = "org.postgresql.Driver", user = "postgres", password = "secret")
+            .also {
+                TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
+                transaction(it) {
+                    addLogger(StdOutSqlLogger)
+                    println("-----------------DROP CREATE------------------")
+                    SchemaUtils.drop(*tables)
+                    SchemaUtils.create(*tables)
+                }
+            }
+    initializeData(database)
 
     val arenaRepository = ArenaRepository(database)
     val teamRepository = TeamRepository(database)
@@ -30,8 +38,6 @@ fun main () {
     val coachRepository = CoachRepository(database)
 
     val arenaService = ArenaService(arenaRepository)
-
-
 
     Rest(arenaService).run()
 }
