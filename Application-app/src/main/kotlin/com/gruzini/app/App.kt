@@ -10,6 +10,9 @@ import com.gruzini.data.repositories.PlayerRepository
 import com.gruzini.data.repositories.TeamRepository
 import com.gruzini.rest.Rest
 import com.gruzini.services.ArenaService
+import com.gruzini.services.CoachService
+import com.gruzini.services.PlayerService
+import com.gruzini.services.TeamService
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.StdOutSqlLogger
@@ -37,6 +40,9 @@ fun main() {
     val coachRepository = CoachRepository(database)
 
     val arenaService = ArenaService(arenaRepository)
+    val teamService = TeamService(teamRepository)
+    val playerService = PlayerService(playerRepository)
+    val coachService = CoachService(coachRepository)
 
-    Rest(arenaService).run()
+    Rest(arenaService, teamService, playerService, coachService).run()
 }

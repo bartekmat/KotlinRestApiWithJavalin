@@ -1,5 +1,6 @@
 package com.gruzini.data
 
+import com.gruzini.models.Position
 import com.gruzini.models.State
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Table
@@ -20,10 +21,12 @@ object Players : Table () {
     val id: Column<Long> = long("id").autoIncrement()
     val firstName: Column<String> = varchar("firstName", 50)
     val surname: Column<String> = varchar("surname", 50)
+    val number: Column<Int> = integer("number")
+    val position: Column<Position> = enumerationByName("position", 255, Position::class)
     val height: Column<Int> = integer("height")
     val weight: Column<Int> = integer("weight")
     val age: Column<Int> = integer("age")
-    val exp: Column<Int> = integer("experience")
+    val careerLength: Column<Int> = integer("experience")
     val teamId: Column<Long> = long("teamId")
 
     override val primaryKey = PrimaryKey(Teams.id, name = "PK_Players_Id")
