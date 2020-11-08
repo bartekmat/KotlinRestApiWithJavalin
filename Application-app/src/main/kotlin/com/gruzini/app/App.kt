@@ -20,7 +20,7 @@ fun main () {
         transaction(it) {
             println("-----------------DROP CREATE------------------")
             SchemaUtils.drop(*tables)
-            SchemaUtils.create(Arenas)
+            SchemaUtils.create(*tables)
         }
     }
 

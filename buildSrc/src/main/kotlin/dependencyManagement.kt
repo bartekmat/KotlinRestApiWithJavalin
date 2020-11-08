@@ -3,6 +3,9 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.kotlin
 
 const val junitVersion = "5.6.0"
+const val mockkVersion ="1.9.3"
+const val exposedVersion = "0.24.1"
+const val postgresVersion = "42.2.2"
 
 /**
  * Configures the current project as a Kotlin project by adding the Kotlin `stdlib` as a dependency.
@@ -13,7 +16,7 @@ fun Project.kotlinProject() {
         "implementation"(kotlin("stdlib"))
 
         // Mockk
-        "testImplementation"("io.mockk:mockk:1.9.3")
+        "testImplementation"("io.mockk:mockk:$mockkVersion")
 
         // JUnit 5
         "testImplementation"("org.junit.jupiter:junit-jupiter-api:$junitVersion")
@@ -27,8 +30,8 @@ fun Project.kotlinProject() {
  */
 fun Project.dataLibs() {
     dependencies {
-        "implementation" ("org.jetbrains.exposed", "exposed-core", "0.24.1")
-        "implementation" ("org.jetbrains.exposed", "exposed-jdbc", "0.24.1")
-        "implementation" ("org.postgresql:postgresql:42.2.2")
+        "implementation" ("org.jetbrains.exposed", "exposed-core", exposedVersion)
+        "implementation" ("org.jetbrains.exposed", "exposed-jdbc", exposedVersion)
+        "implementation" ("org.postgresql:postgresql:$postgresVersion")
     }
 }
