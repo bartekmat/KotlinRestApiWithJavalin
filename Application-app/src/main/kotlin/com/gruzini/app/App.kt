@@ -22,7 +22,6 @@ fun main() {
     val tables = arrayOf(Arenas, Teams, Players, Coaches)
     val database = Database.connect("jdbc:postgresql://localhost:5432/javalinrest", driver = "org.postgresql.Driver", user = "postgres", password = "secret")
             .also {
-                TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
                 transaction(it) {
                     addLogger(StdOutSqlLogger)
                     println("-----------------DROP CREATE------------------")
