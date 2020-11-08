@@ -6,7 +6,12 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
-fun lakers(db: Database){
+
+fun players(db: Database) {
+    lakers(db)
+}
+
+private fun lakers(db: Database){
     transaction(db) {
         Players.insert {
             it[id] = 1
