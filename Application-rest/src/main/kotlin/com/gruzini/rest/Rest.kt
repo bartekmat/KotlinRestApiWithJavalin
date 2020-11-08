@@ -18,6 +18,9 @@ class Rest(private val arenaService: ArenaService) : Runnable {
             .create()
             .apply {
                 // Configuration of Json Mapper
+                // - I use GSon instead of the default for Javalin that is Jackson
+                // - the reason is that Jackson requires fields to be public/have getters&setters
+                // - GSon overcomes this problem
                 configureJsonMapper()
 
                 // Setting status code to 404 on NotFoundException
