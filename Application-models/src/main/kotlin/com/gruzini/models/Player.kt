@@ -1,14 +1,14 @@
 package com.gruzini.models
 
 data class Player (
-        private val id: Long,
-        private val firstName: String,
-        private val surname: String,
-        private val number: Int,
-        private val position: Position,
-        private val height: Int,
-        private val weight: Int,
-        private val age: Int,
-        private val exp: Int,
-        private val teamId: Long
+        val id: Long,
+        val firstName: String,
+        val surname: String,
+        val number: Int,
+        val position: Position,
+        val height: Int,
+        val weight: Int,
+        val age: Int,
+        val careerLength: Int,
+        val teamId: Long
 )

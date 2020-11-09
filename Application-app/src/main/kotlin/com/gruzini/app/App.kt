@@ -8,6 +8,7 @@ import com.gruzini.data.repositories.ArenaRepository
 import com.gruzini.data.repositories.CoachRepository
 import com.gruzini.data.repositories.PlayerRepository
 import com.gruzini.data.repositories.TeamRepository
+import com.gruzini.mappers.PlayerDaoMapper
 import com.gruzini.rest.Rest
 import com.gruzini.services.ArenaService
 import com.gruzini.services.CoachService
@@ -34,15 +35,18 @@ fun main() {
             }
     initializeData(database)
 
-    val arenaRepository = ArenaRepository(database)
-    val teamRepository = TeamRepository(database)
-    val playerRepository = PlayerRepository(database)
-    val coachRepository = CoachRepository(database)
+    val arenaRepository = ArenaRepository(db = database)
+    val teamRepository = TeamRepository(db = database)
+    val playerRepository = PlayerRepository(db = database)
+    val coachRepository = CoachRepository(db = database)
 
-    val arenaService = ArenaService(arenaRepository)
-    val teamService = TeamService(teamRepository)
-    val playerService = PlayerService(playerRepository)
-    val coachService = CoachService(coachRepository)
+    val arenaService = ArenaService(repository = arenaRepository)
+    val teamService = TeamService(repository = teamRepository)
+    val playerDaoMapper = PlayerDaoMapper(teamService = teamService)
+    val playerService = PlayerService(repository = playerRepository, daoMapper = playerDaoMapper)
+    val coachService = CoachService(repository = coachRepository)
+
+    playerService.getPlayersByPosition("center")
 
     Rest(arenaService, teamService, playerService, coachService).run()
 }

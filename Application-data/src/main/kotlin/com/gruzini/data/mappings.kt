@@ -40,6 +40,6 @@ fun ResultRow.toPlayer() : Player = Player(
         height = this[Players.height],
         weight = this[Players.weight],
         age = this[Players.age],
-        exp = this[Players.careerLength],
+        careerLength = this[Players.careerLength],
         teamId = this[Players.teamId]
 )

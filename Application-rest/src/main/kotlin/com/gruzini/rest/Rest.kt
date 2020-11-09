@@ -68,6 +68,7 @@ class Rest(
                 }
                 path(":position") {
                     get {
+                        println("received paremeter" + it.pathParam("position"))
                         it.json(playerService.getPlayersByPosition(it.pathParam("position"))) }
                 }
             }

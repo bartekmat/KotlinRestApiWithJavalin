@@ -25,7 +25,7 @@ class PlayerRepository(private val db: Database) {
 
     fun fetchPosition(position: String): List<Player> {
         return transaction(db) {
-            Players.select { Players.position.eq(Position.valueOf(position)) }.map { it.toPlayer() }
+            Players.select { Players.position.eq(Position.valueOf(position.toUpperCase())) }.map { it.toPlayer() }
         }
     }
 }
