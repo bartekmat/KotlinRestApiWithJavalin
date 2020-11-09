@@ -1,5 +1,7 @@
 package com.gruzini.app
 
+import com.gruzini.daoServices.PlayerDaoService
+import com.gruzini.daoServices.TeamDaoService
 import com.gruzini.data.Arenas
 import com.gruzini.data.Coaches
 import com.gruzini.data.Players
@@ -9,18 +11,14 @@ import com.gruzini.data.repositories.CoachRepository
 import com.gruzini.data.repositories.PlayerRepository
 import com.gruzini.data.repositories.TeamRepository
 import com.gruzini.mappers.PlayerDaoMapper
+import com.gruzini.mappers.TeamDaoMapper
 import com.gruzini.rest.Rest
-import com.gruzini.services.ArenaService
-import com.gruzini.services.CoachService
-import com.gruzini.services.PlayerService
-import com.gruzini.services.TeamService
+import com.gruzini.services.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.StdOutSqlLogger
 import org.jetbrains.exposed.sql.addLogger
-import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.sql.Connection
 
 fun main() {
     val tables = arrayOf(Arenas, Teams, Players, Coaches)
@@ -42,11 +40,13 @@ fun main() {
 
     val arenaService = ArenaService(repository = arenaRepository)
     val teamService = TeamService(repository = teamRepository)
-    val playerDaoMapper = PlayerDaoMapper(teamService = teamService)
-    val playerService = PlayerService(repository = playerRepository, daoMapper = playerDaoMapper)
+    val playerDaoMapper = PlayerDaoMapper()
+    val teamDaoMapper = TeamDaoMapper(arenaService = arenaService, teamService = teamService, playerDaoMapper = playerDaoMapper)
+    val playerService = PlayerService(repository = playerRepository)
     val coachService = CoachService(repository = coachRepository)
 
-    playerService.getPlayersByPosition("center")
+    val teamDaoService = TeamDaoService(teamService = teamService, playerMapper = playerDaoMapper, teamMapper = teamDaoMapper)
+    val playerDaoService = PlayerDaoService(playerService = playerService, daoMapper = playerDaoMapper)
 
-    Rest(arenaService, teamService, playerService, coachService).run()
+    Rest(arenaService, teamDaoService, playerDaoService, coachService).run()
 }

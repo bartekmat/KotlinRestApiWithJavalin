@@ -3,16 +3,16 @@ package com.gruzini.rest
 import com.gruzini.exceptions.NotFoundException
 import com.gruzini.services.ArenaService
 import com.gruzini.services.CoachService
-import com.gruzini.services.PlayerService
-import com.gruzini.services.TeamService
+import com.gruzini.daoServices.PlayerDaoService
+import com.gruzini.daoServices.TeamDaoService
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.apibuilder.ApiBuilder.path
 
 class Rest(
         private val arenaService: ArenaService,
-        private val teamService: TeamService,
-        private val playerService: PlayerService,
+        private val teamService: TeamDaoService,
+        private val playerService: PlayerDaoService,
         private val coachService: CoachService
 ) : Runnable {
     override fun run() {
@@ -57,6 +57,9 @@ class Rest(
                 get { ctx ->
                     ctx.json(teamService.getTeams())
                 }
+                path(":id/players") {
+                    get { it.json(teamService.getPlayers(it.pathParam("id").toLong())) }
+                }
                 path(":id") {
                     get { it.json(teamService.getTeamById(it.pathParam("id").toLong())) }
                 }
@@ -69,7 +72,8 @@ class Rest(
                 path(":position") {
                     get {
                         println("received paremeter" + it.pathParam("position"))
-                        it.json(playerService.getPlayersByPosition(it.pathParam("position"))) }
+                        it.json(playerService.getPlayersByPosition(it.pathParam("position")))
+                    }
                 }
             }
 

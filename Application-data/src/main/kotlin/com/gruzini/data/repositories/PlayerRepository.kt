@@ -1,7 +1,9 @@
 package com.gruzini.data.repositories
 
 import com.gruzini.data.Players
+import com.gruzini.data.Teams
 import com.gruzini.data.toPlayer
+import com.gruzini.data.toTeam
 import com.gruzini.models.Player
 import com.gruzini.models.Position
 import org.jetbrains.exposed.sql.Database
@@ -23,9 +25,18 @@ class PlayerRepository(private val db: Database) {
         }
     }
 
-    fun fetchPosition(position: String): List<Player> {
+    fun fetchByPosition(position: String): List<Player> {
         return transaction(db) {
-            Players.select { Players.position.eq(Position.valueOf(position.toUpperCase())) }.map { it.toPlayer() }
+            Players.select { Players.position.eq(Position.valueOf(position.toUpperCase())) }
+                    .orderBy(Players.surname)
+                    .map { it.toPlayer() }
+        }
+    }
+
+    fun fetchByTeam(team: String): List<Player> {
+        return transaction(db) {
+            val selectedTeam = Teams.select { Teams.name eq team.toLowerCase().replaceFirst(team[0], team[0].toUpperCase()) }.map { it.toTeam() }.first()
+            return@transaction Players.select { Players.teamId eq selectedTeam.id }.map { it.toPlayer() }
         }
     }
 }

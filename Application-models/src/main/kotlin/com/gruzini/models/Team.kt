@@ -1,10 +1,10 @@
 package com.gruzini.models
 
-data class Team (private val id: Long,
-                 private val city: String,
-                 private val name: String,
-                 private val abbreviation: String,
-                 private val state: State,
-                 private val arenaId: Long,
-                 private val coachId: Long
+data class Team (val id: Long,
+                 val city: String,
+                 val name: String,
+                 val abbreviation: String,
+                 val state: State,
+                 val arenaId: Long,
+                 val coachId: Long
                     )
