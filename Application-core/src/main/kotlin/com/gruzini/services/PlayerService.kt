@@ -12,4 +12,8 @@ class PlayerService(private val repository: PlayerRepository) {
     fun getPlayerById(id: Long): Player {
         return repository.fetchById(id) ?: throw NotFoundException("Arena with id $id not found")
     }
+
+    fun getPlayersByPosition(position: String): List<Player> {
+        return repository.fetchPosition(position)
+    }
 }

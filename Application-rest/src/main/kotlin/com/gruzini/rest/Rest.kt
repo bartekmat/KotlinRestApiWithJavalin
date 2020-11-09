@@ -66,8 +66,9 @@ class Rest(
                 get { ctx ->
                     ctx.json(playerService.getPlayers())
                 }
-                path(":id") {
-                    get { it.json(playerService.getPlayerById(it.pathParam("id").toLong())) }
+                path(":position") {
+                    get {
+                        it.json(playerService.getPlayersByPosition(it.pathParam("position"))) }
                 }
             }
 

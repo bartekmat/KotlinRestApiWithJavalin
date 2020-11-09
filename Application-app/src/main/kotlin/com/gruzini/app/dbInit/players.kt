@@ -195,3 +195,117 @@ private fun lakers(db: Database){
         }
     }
 }
+private fun knicks(db: Database) {
+    Players.insert {
+        it[id] = 16
+        it[firstName] = "Walt"
+        it[surname] = "Frazier"
+        it[number] = 10
+        it[position] = Position.POINT_GUARD
+        it[height] = 193
+        it[weight] = 90
+        it[age] = 75
+        it[careerLength] = 13
+        it[teamId] = 2
+    }
+    Players.insert {
+        it[id] = 17
+        it[firstName] = "Dick"
+        it[surname] = "Barnett"
+        it[number] = 12
+        it[position] = Position.SHOOTING_GUARD
+        it[height] = 193
+        it[weight] = 86
+        it[age] = 84
+        it[careerLength] = 14
+        it[teamId] = 2
+    }
+    Players.insert {
+        it[id] = 18
+        it[firstName] = "Dick"
+        it[surname] = "McGuire"
+        it[number] = 15
+        it[position] = Position.POINT_GUARD
+        it[height] = 183
+        it[weight] = 81
+        it[age] = 84
+        it[careerLength] = 11
+        it[teamId] = 2
+    }
+    Players.insert {
+        it[id] = 19
+        it[firstName] = "Earl"
+        it[surname] = "Monroe"
+        it[number] = 15
+        it[position] = Position.SHOOTING_GUARD
+        it[height] = 190
+        it[weight] = 83
+        it[age] = 75
+        it[careerLength] = 13
+        it[teamId] = 2
+    }
+    Players.insert {
+        it[id] = 20
+        it[firstName] = "Willis"
+        it[surname] = "Reed"
+        it[number] = 19
+        it[position] = Position.CENTER
+        it[height] = 206
+        it[weight] = 106
+        it[age] = 78
+        it[careerLength] = 10
+        it[teamId] = 2
+    }
+    Players.insert {
+        it[id] = 21
+        it[firstName] = "Dave"
+        it[surname] = "DeBusschere"
+        it[number] = 22
+        it[position] = Position.POWER_FORWARD
+        it[height] = 198
+        it[weight] = 99
+        it[age] = 62
+        it[careerLength] = 12
+        it[teamId] = 2
+    }
+    Players.insert {
+        it[id] = 22
+        it[firstName] = "Bill"
+        it[surname] = "Bradley"
+        it[number] = 24
+        it[position] = Position.SMALL_FORWARD
+        it[height] = 196
+        it[weight] = 92
+        it[age] = 77
+        it[careerLength] = 10
+        it[teamId] = 2
+    }
+    Players.insert {
+        it[id] = 23
+        it[firstName] = "Patrick"
+        it[surname] = "Ewing"
+        it[number] = 33
+        it[position] = Position.CENTER
+        it[height] = 213
+        it[weight] = 108
+        it[age] = 58
+        it[careerLength] = 17
+        it[teamId] = 2
+    }
+}
+private fun bulls(db: Database) {
+    transaction(db) {
+        Players.insert {
+            it[id] = 16
+            it[firstName] = "Jerry"
+            it[surname] = "Sloan"
+            it[number] = 4
+            it[position] = Position.SHOOTING_GUARD
+            it[height] = 196
+            it[weight] = 88
+            it[age] = 78
+            it[careerLength] = 11
+            it[teamId] = 4
+        }
+    }
+}
